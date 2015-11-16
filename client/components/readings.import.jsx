@@ -4,14 +4,14 @@
 
 import  { _, moment, bootbox, ReactBootstrap } from 'app-deps';
 import Loading from 'client/components/loading';
-import { Timestamps } from 'lib/models';
+import { Readings } from 'lib/models';
 
 var { Button, ButtonToolbar } = ReactBootstrap;
 
 // An example of an application-specific component.
 
 export default React.createClass({
-    displayName: 'Timestamps',
+    displayName: 'Readings',
     mixins: [ReactMeteorData],
 
     getMeteorData: function() {
@@ -20,11 +20,11 @@ export default React.createClass({
         // in Meteor, the function will be re-run and the component re-rendered.
 
         var user = Meteor.user();
-        var subscriptionHandle = Meteor.subscribe("timestamps");
+        var subscriptionHandle = Meteor.subscribe("readings");
 
         return {
             loading: !subscriptionHandle.ready(),
-            timestamps: Timestamps.find().fetch(),
+            readings: Readings.find().fetch(),
             canWrite: user? Roles.userIsInRole(user, ['write', 'admin']) : false,
         };
     },
@@ -39,7 +39,7 @@ export default React.createClass({
 
         return (
             <div>
-                <h1 className="page-header">Timestamps</h1>
+                <h1 className="page-header">Readings</h1>
                 <p className="help-block">
                     Watch the clock tick!
                 </p>
@@ -49,11 +49,11 @@ export default React.createClass({
                         <Clock />
                     </div>
                     <div className="col-md-8">
-                        <TimestampList timestamps={this.data.timestamps} />
+                        <TimestampList readings={this.data.readings} />
                         {this.data.canWrite? (
                                 <ButtonToolbar>
                                     <RecordNewButton />
-                                    <ClearButton timestamps={this.data.timestamps} />
+                                    <ClearButton readings={this.data.readings} />
                                 </ButtonToolbar>
                         ) : ""}
                     </div>
@@ -98,13 +98,13 @@ var TimestampList = React.createClass({
     mixins: [React.addons.PureRenderMixin],
 
     propTypes: {
-        timestamps: React.PropTypes.arrayOf(Date).isRequired
+        readings: React.PropTypes.arrayOf(Date).isRequired
     },
 
     render: function() {
         return (
             <ul className="timestamp-list">
-                {this.props.timestamps.map(t => {
+                {this.props.readings.map(t => {
                     return (
                         <li key={t.time.getTime()}>{moment(t.time).format("hh:mm:ss")}: {t.name}</li>
                     );
@@ -115,25 +115,43 @@ var TimestampList = React.createClass({
 
 });
 
+var BGForm = React.createClass({
+    getInitialState() {
+      return {
+          value: ''
+      };
+    },
+
+    validationState() {
+        let length = this.state.value.length;
+        if(length > 10) return 'success';
+        else if(length > 5);
+    },
+
+    render: function() {
+        
+    }
+});
+
 var RecordNewButton = React.createClass({
     displayName: "RecordNewButton",
     mixins: [React.addons.PureRenderMixin],
 
     render: function() {
         return (
-            <Button bsStyle='success' onClick={this.newReading}>Record new timestamp</Button>
+            <Button bsStyle='success' onClick={this.newReading}>New Glucose Reading</Button>
         );
     },
 
     newReading: function() {
         var now = new Date();
-        bootbox.prompt("Enter a name for this timestamp", result => {
+        bootbox.prompt("Enter a name for this Glucose Reading", result => {
             if (result !== null) {
                 // Updating the collection causes the reactive `getMeteorData()`
                 // function at the top of the component hierarchy to re-run and
                 // the components to re-render as required.
 
-                Timestamps.insert({
+                Readings.insert({
                     time: now,
                     name: result
                 });
@@ -148,7 +166,7 @@ var ClearButton = React.createClass({
     mixins: [React.addons.PureRenderMixin],
 
     propTypes: {
-        timestamps: React.PropTypes.arrayOf(Date).isRequired
+        readings: React.PropTypes.arrayOf(Date).isRequired
     },
 
     render: function() {
@@ -160,8 +178,8 @@ var ClearButton = React.createClass({
     clearAll: function() {
         bootbox.confirm("Are you sure?", result => {
             if (result) {
-                this.props.timestamps.forEach(t => {
-                    Timestamps.remove(t._id);
+                this.props.readings.forEach(t => {
+                    Readings.remove(t._id);
                 });
             }
         });

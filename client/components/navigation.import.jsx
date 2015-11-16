@@ -28,10 +28,10 @@ export default React.createClass({
     render: function() {
 
         return (
-            <Navbar brand={<Link to="home">Meteor/React Example</Link>} inverse fixedTop toggleNavKey={0}>
+            <Navbar brand={<Link to="home">T1de</Link>} inverse fixedTop toggleNavKey={0}>
                 <CollapsibleNav eventKey={0}>
                     <Nav navbar>
-                        <NavItemLink to="timestamps">Timestamps</NavItemLink>
+                        <NavItemLink to="readings">Readings</NavItemLink>
                     </Nav>
                     <Nav navbar right>
                         <DropdownButton ref="userMenu" title={this.data.user? this.data.user.username : "Not logged in"}>
