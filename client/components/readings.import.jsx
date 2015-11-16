@@ -49,6 +49,7 @@ export default React.createClass({
                         <Clock />
                     </div>
                     <div className="col-md-8">
+                        <BGForm />
                         <TimestampList readings={this.data.readings} />
                         {this.data.canWrite? (
                                 <ButtonToolbar>
@@ -122,14 +123,36 @@ var BGForm = React.createClass({
       };
     },
 
-    validationState() {
+    validationState: function() {
         let length = this.state.value.length;
         if(length > 10) return 'success';
-        else if(length > 5);
+        else if(length > 5) return 'warning';
+        else if(length > 5) return 'error';
+    },
+
+    handleChange: function() {
+      this.setState({
+          value: this.refs.input.getValue()
+      });
     },
 
     render: function() {
-        
+        return (
+            <form>
+            <Input
+                type="text"
+                value={this.state.value}
+                placeholder="Test"
+                label="Test"
+                help="asdf"
+                hasFeedback
+                ref=""
+                groupClassName="group-class"
+                labelClassName="laabel-class"
+                onChange={this.handleChange}
+                />
+                </form>
+        );
     }
 });
 
