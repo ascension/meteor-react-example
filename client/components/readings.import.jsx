@@ -6,7 +6,7 @@ import  { _, moment, bootbox, ReactBootstrap } from 'app-deps';
 import Loading from 'client/components/loading';
 import { Readings } from 'lib/models';
 
-var { Button, ButtonToolbar } = ReactBootstrap;
+var { Input, Button, ButtonToolbar } = ReactBootstrap;
 
 // An example of an application-specific component.
 
@@ -40,23 +40,14 @@ export default React.createClass({
         return (
             <div>
                 <h1 className="page-header">Readings</h1>
-                <p className="help-block">
-                    Watch the clock tick!
-                </p>
 
                 <div className="row">
                     <div className="col-md-4">
-                        <Clock />
                     </div>
                     <div className="col-md-8">
                         <BGForm />
-                        <TimestampList readings={this.data.readings} />
-                        {this.data.canWrite? (
-                                <ButtonToolbar>
-                                    <RecordNewButton />
-                                    <ClearButton readings={this.data.readings} />
-                                </ButtonToolbar>
-                        ) : ""}
+
+                        <ReadingsList readings={this.data.readings} />
                     </div>
                 </div>
             </div>
@@ -65,37 +56,8 @@ export default React.createClass({
 
 });
 
-var Clock = React.createClass({
-    displayName: "Clock",
-
-    getInitialState: function() {
-        return {
-            now: moment()
-        };
-    },
-
-    componentDidMount: function() {
-        this.timer = setInterval(() => {
-            this.setState({
-                now: moment()
-            });
-        }, 500);
-    },
-
-    componentWillUnmount: function() {
-        clearInterval(this.timer);
-    },
-
-    render: function() {
-        return (
-            <div className="clock">{this.state.now.format("hh:mm:ss")}</div>
-        );
-    }
-
-});
-
-var TimestampList = React.createClass({
-    displayName: "TimestampList",
+var ReadingsList = React.createClass({
+    displayName: "ReadingsList",
     mixins: [React.addons.PureRenderMixin],
 
     propTypes: {
@@ -104,10 +66,10 @@ var TimestampList = React.createClass({
 
     render: function() {
         return (
-            <ul className="timestamp-list">
+            <ul className="readings-list">
                 {this.props.readings.map(t => {
                     return (
-                        <li key={t.time.getTime()}>{moment(t.time).format("hh:mm:ss")}: {t.name}</li>
+                        <li key={t.created_at}>{moment(t.created_at).format("hh:mm:ss")}: {t.reading}</li>
                     );
                 })}
             </ul>
@@ -116,45 +78,7 @@ var TimestampList = React.createClass({
 
 });
 
-var BGForm = React.createClass({
-    getInitialState() {
-      return {
-          value: ''
-      };
-    },
 
-    validationState: function() {
-        let length = this.state.value.length;
-        if(length > 10) return 'success';
-        else if(length > 5) return 'warning';
-        else if(length > 5) return 'error';
-    },
-
-    handleChange: function() {
-      this.setState({
-          value: this.refs.input.getValue()
-      });
-    },
-
-    render: function() {
-        return (
-            <form>
-            <Input
-                type="text"
-                value={this.state.value}
-                placeholder="Test"
-                label="Test"
-                help="asdf"
-                hasFeedback
-                ref=""
-                groupClassName="group-class"
-                labelClassName="laabel-class"
-                onChange={this.handleChange}
-                />
-                </form>
-        );
-    }
-});
 
 var RecordNewButton = React.createClass({
     displayName: "RecordNewButton",
@@ -162,26 +86,70 @@ var RecordNewButton = React.createClass({
 
     render: function() {
         return (
-            <Button bsStyle='success' onClick={this.newReading}>New Glucose Reading</Button>
+            <Button bsStyle='success' onClick={this.props.onClick}>New Glucose Reading</Button>
         );
     },
 
-    newReading: function() {
-        var now = new Date();
-        bootbox.prompt("Enter a name for this Glucose Reading", result => {
-            if (result !== null) {
-                // Updating the collection causes the reactive `getMeteorData()`
-                // function at the top of the component hierarchy to re-run and
-                // the components to re-render as required.
 
-                Readings.insert({
-                    time: now,
-                    name: result
-                });
-            }
-        });
-    }
 
+});
+
+var BGForm = React.createClass({
+        getInitialState: function() {
+            return {
+                value: ''
+            };
+        },
+
+        setInitialState: function() {
+          return {
+              value: ''
+          };
+        },
+
+        validationState: function() {
+            let length = this.state.value.length;
+            if(length > 10) return 'success';
+            else if(length > 5) return 'warning';
+            else if(length > 5) return 'error';
+        },
+
+        handleChange: function() {
+            this.setState({
+                value: this.refs.input.getValue()
+            });
+        },
+
+        render: function() {
+            return (
+                <div>
+                    <Input
+                        type="text"
+                        value={this.state.value}
+                        placeholder="Please enter a Blood Glucose Reading"
+                        label="Test"
+                        hasFeedback
+                        ref="input"
+                        groupClassName="group-class"
+                        labelClassName="laabel-class"
+                        onChange={this.handleChange}
+                        />
+                    <RecordNewButton onClick={this.newReading} />
+                </div>
+            );
+        },
+
+        newReading: function() {
+            var now = new Date();
+
+            Readings.insert({
+                created_at: now,
+                label: '',
+                reading: this.state.value
+            });
+
+            this.state.value = '';
+        }
 });
 
 var ClearButton = React.createClass({
