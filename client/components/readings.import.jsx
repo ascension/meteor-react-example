@@ -42,9 +42,7 @@ export default React.createClass({
                 <h1 className="page-header">Readings</h1>
 
                 <div className="row">
-                    <div className="col-md-4">
-                    </div>
-                    <div className="col-md-8">
+                    <div className="col-md-4 col-md-offset-4">
                         <BGForm />
 
                         <ReadingsList readings={this.data.readings} />
@@ -66,16 +64,42 @@ var ReadingsList = React.createClass({
 
     render: function() {
         return (
-            <ul className="readings-list">
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Reading</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
                 {this.props.readings.map(t => {
                     return (
-                        <li key={t.created_at}>{moment(t.created_at).format("hh:mm:ss")}: {t.reading}</li>
+                        <ReadingRow reading={t} />
                     );
                 })}
-            </ul>
+                </tbody>
+                </table>
         );
     }
 
+});
+
+var ReadingRow = React.createClass({
+
+    deleteReading: function() {
+        Readings.remove(this.props.reading._id);
+    },
+
+    render: function() {
+        return (
+            <tr key={this.props.reading._id}>
+                <td>{this.props.reading.reading}</td>
+                <td>{moment(this.props.reading.created_at).format("YYYY-MM-DD HH:mm")}</td>
+                <td><button className="btn btn-sm btn-danger" onClick={this.deleteReading}>Delete</button></td>
+            </tr>
+        );
+    }
 });
 
 
@@ -127,7 +151,6 @@ var BGForm = React.createClass({
                         type="text"
                         value={this.state.value}
                         placeholder="Please enter a Blood Glucose Reading"
-                        label="Test"
                         hasFeedback
                         ref="input"
                         groupClassName="group-class"
@@ -145,7 +168,8 @@ var BGForm = React.createClass({
             Readings.insert({
                 created_at: now,
                 label: '',
-                reading: this.state.value
+                reading: this.state.value,
+                user_id: Meteor.userId()
             });
 
             this.state.value = '';
