@@ -36,6 +36,7 @@ export default React.createClass({
                     <Nav navbar right>
                         <DropdownButton ref="userMenu" title={this.data.user? this.data.user.username : "Not logged in"}>
                             {this.data.isAdmin? <MenuItemLink onClick={this.linkClick} to="adminUsers">Manage users</MenuItemLink> : ""}
+                            <MenuItemLink onClick={this.linkClick} to="profile">Profile</MenuItemLink>
                             <MenuItemLink onClick={this.linkClick} to="changePassword">Change password</MenuItemLink>
                             <MenuItem onClick={this.logout}>Log out</MenuItem>
                         </DropdownButton>

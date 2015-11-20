@@ -91,9 +91,21 @@ var ReadingRow = React.createClass({
         Readings.remove(this.props.reading._id);
     },
 
+    getReadingClass: function(){
+        var min = Meteor.user().profile.min_bg_limit;
+        var max = Meteor.user().profile.max_bg_limit;
+
+        if(this.props.reading.reading <= parseInt(max) && this.props.reading.reading >= parseInt(min)){
+            return 'success';
+        }
+        else if (this.props.reading.reading > parseInt(max) || this.props.reading.reading < parseInt(min)) {
+            return 'danger';
+        }
+    },
+
     render: function() {
         return (
-            <tr key={this.props.reading._id}>
+            <tr key={this.props.reading._id} className={this.getReadingClass()}>
                 <td>{this.props.reading.reading}</td>
                 <td>{moment(this.props.reading.created_at).format("YYYY-MM-DD HH:mm")}</td>
                 <td><button className="btn btn-sm btn-danger" onClick={this.deleteReading}>Delete</button></td>
@@ -146,7 +158,7 @@ var BGForm = React.createClass({
 
         render: function() {
             return (
-                <div>
+                <form onSubmit={this.newReading}>
                     <Input
                         type="text"
                         value={this.state.value}
@@ -158,11 +170,12 @@ var BGForm = React.createClass({
                         onChange={this.handleChange}
                         />
                     <RecordNewButton onClick={this.newReading} />
-                </div>
+                </form>
             );
         },
 
-        newReading: function() {
+        newReading: function(e) {
+            e.preventDefault();
             var now = new Date();
 
             Readings.insert({

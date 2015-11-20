@@ -18,7 +18,7 @@ export default React.createClass({
                 <div className="jumbotron">
                     <h1>Welcome to the Meteor/React Example App</h1>
                     <p>Lorem ipsum</p>
-                    <p><Link className="btn btn-primary btn-lg" to="timestamps" role="button">Get started &raquo;</Link></p>
+                    <p><Link className="btn btn-primary btn-lg" to="readings" role="button">Get started &raquo;</Link></p>
                 </div>
             </div>
         );
