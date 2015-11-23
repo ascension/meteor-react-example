@@ -15,3 +15,16 @@ alanning:roles
 react
 app-deps
 universe:modules
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
