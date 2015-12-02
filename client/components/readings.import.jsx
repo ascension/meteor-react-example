@@ -13,7 +13,11 @@ var { Input, Button, ButtonToolbar } = ReactBootstrap;
 export default React.createClass({
     displayName: 'Readings',
     mixins: [ReactMeteorData],
-
+    getInitialState: function() {
+        return {
+            value: ''
+        };
+    },
     getMeteorData: function() {
         // Start a subscription and then fetch data. Return value will be
         // available under `this.data`, and when a reactive change happens
@@ -43,6 +47,7 @@ export default React.createClass({
 
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4">
+                        <NutritionSearch/>
                         <BGForm />
 
                         <ReadingsList readings={this.data.readings} />
@@ -52,6 +57,127 @@ export default React.createClass({
         );
     },
 
+});
+
+var NutritionSearch = React.createClass({
+    getInitialState: function() {
+        return {
+            value: '',
+            search: [{}],
+            searchTimeout: ''
+        };
+    },
+    setInitialState: function() {
+        return {
+            value: '',
+            search: [{}],
+            searchTimeout: ''
+        };
+    },
+    performSearch: function() {
+        var searchValue = this.refs.nux_search.getValue();
+
+        var component = this;
+
+        var timeoutId = setTimeout(function(){
+            if(component.state.searchTimeout)
+            {
+                console.log(component.refs.nux_search.getValue());
+                component.setState({value: component.refs.nux_search.getValue(), search: component.state.search, searchTimeout: ''});
+                Meteor.call('search',  component.refs.nux_search.getValue(),
+                    function(error, data){
+                        component.setState(
+                            {value: component.refs.nux_search.getValue(), search: data.data, searchTimeout: ''}
+                        );
+
+                    }
+                );
+            }
+
+        },400);
+
+        this.setState({value: searchValue, search: this.state.search, searchTimeout: timeoutId});
+
+
+        //if(this.state.searchTimeout){
+        //    console.log('Clearing Timeout.');
+        //    clearTimeout(this.state.searchTimeout);
+        //}
+        //
+        //var timeoutId = setTimeout(function(){
+        //    Meteor.call('search',  searchValue,
+        //        function(error, data){
+        //            funcToCall(data.data);
+        //        }
+        //    );
+        //},300);
+        //
+        //this.setSearchTimeout(timeoutId);
+        //
+        //if(searchValue != ''){
+        //    //Meteor.call('search',  this.refs.nux_search.getValue(),
+        //    //    function(error, data){
+        //    //        funcToCall(data.data, searchValue);
+        //    //    }
+        //    //);
+        //}
+        //else {
+        //    funcToCall([{}], searchValue);
+        //}
+
+    },
+
+
+    render: function() {
+        return (
+            <div>
+                <Input
+                    type="text"
+                    value={this.state.value}
+                    placeholder="Please enter a Blood Glucose Reading"
+                    hasFeedback
+                    ref="nux_search"
+                    groupClassName="group-class"
+                    labelClassName="laabel-class"
+                    onChange={this.performSearch}
+                    />
+                <NutritionList results={this.state.search}/>
+            </div>
+        );
+    }
+});
+
+var NutritionList = React.createClass({
+    displayName: "NutritionList",
+    mixins: [React.addons.PureRenderMixin],
+
+    propTypes: {
+        results: React.PropTypes.object
+    },
+
+    render: function() {
+        return (
+            <table className="table table-striped">
+                <thead>
+                <tr>
+                    <th>Reading</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.props.results.map(function(t){
+                    return (
+                        <tr>
+                            <td key={t.id}>{t.text}</td>
+                            <td></td>
+                        </tr>
+                    );
+                })}
+                </tbody>
+            </table>
+        );
+    }
 });
 
 var ReadingsList = React.createClass({
@@ -124,10 +250,7 @@ var RecordNewButton = React.createClass({
         return (
             <Button bsStyle='success' onClick={this.props.onClick}>New Glucose Reading</Button>
         );
-    },
-
-
-
+    }
 });
 
 var BGForm = React.createClass({

@@ -25,6 +25,15 @@ Meteor.methods({
 
         // Sends an email asking user to pick a password
         Accounts.sendEnrollmentEmail(userId);
+    },
+    search: function(query_text) {
+
+        return HTTP.get( 'https://api.nutritionix.com/v2/autocomplete?q=' + encodeURIComponent(query_text), {
+            headers: {
+                "X-APP-ID":"d777a3a8",
+                "X-APP-KEY":"c657dfac9946c562366e1d592ef3d97f"
+            }
+        });
     }
 
 });
