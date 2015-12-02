@@ -97,34 +97,6 @@ var NutritionSearch = React.createClass({
         },400);
 
         this.setState({value: searchValue, search: this.state.search, searchTimeout: timeoutId});
-
-
-        //if(this.state.searchTimeout){
-        //    console.log('Clearing Timeout.');
-        //    clearTimeout(this.state.searchTimeout);
-        //}
-        //
-        //var timeoutId = setTimeout(function(){
-        //    Meteor.call('search',  searchValue,
-        //        function(error, data){
-        //            funcToCall(data.data);
-        //        }
-        //    );
-        //},300);
-        //
-        //this.setSearchTimeout(timeoutId);
-        //
-        //if(searchValue != ''){
-        //    //Meteor.call('search',  this.refs.nux_search.getValue(),
-        //    //    function(error, data){
-        //    //        funcToCall(data.data, searchValue);
-        //    //    }
-        //    //);
-        //}
-        //else {
-        //    funcToCall([{}], searchValue);
-        //}
-
     },
 
 
