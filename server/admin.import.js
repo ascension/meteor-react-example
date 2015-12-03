@@ -26,7 +26,7 @@ Meteor.methods({
         // Sends an email asking user to pick a password
         Accounts.sendEnrollmentEmail(userId);
     },
-    search: function(query_text) {
+    autoComplete: function(query_text) {
 
         return HTTP.get( 'https://api.nutritionix.com/v2/autocomplete?q=' + encodeURIComponent(query_text), {
             headers: {
@@ -34,6 +34,27 @@ Meteor.methods({
                 "X-APP-KEY":"c657dfac9946c562366e1d592ef3d97f"
             }
         });
-    }
+    },
+    search: function(query_text) {
+
+        return HTTP.post('https://api.nutritionix.com/v1_1/search', {
+            data: {
+                "appId":"d777a3a8",
+                "appKey":"c657dfac9946c562366e1d592ef3d97f",
+                "query": query_text
+            }
+        });
+    },
+    getItem: function(item_id) {
+
+        return HTTP.get( 'https://api.nutritionix.com/v1_1/item', {
+            data: {
+                "appId":"d777a3a8",
+                "appKey":"c657dfac9946c562366e1d592ef3d97f",
+                "id": item_id
+            }
+        });
+    },
+
 
 });

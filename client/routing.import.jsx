@@ -10,6 +10,7 @@ import { AdminUsers, CreateUser } from 'client/components/users';
 import App from 'client/components/app';
 import Home from 'client/components/home';
 import Readings from 'client/components/readings';
+import Meals from 'client/components/meals';
 import Profile from 'client/components/profile';
 
 var { Route, DefaultRoute } = Router;
@@ -34,6 +35,7 @@ Meteor.startup(() => {
             // User facing functionality
             <DefaultRoute handler={Home} />
             <Route name="readings" path="readings" handler={Readings}/>
+            <Route name="meals" path="meals" handler={Meals}/>
             <Route name="profile" path="profile" handler={Profile}/>
 
 

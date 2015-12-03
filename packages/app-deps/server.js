@@ -6,5 +6,10 @@
 
 Dependencies = {
     _: Npm.require('lodash'),
-    moment: Npm.require('moment')
+    moment: Npm.require('moment'),
+    nux: Npm.require('nutritionix')({
+        appId: 'd777a3a8',
+        appKey: 'c657dfac9946c562366e1d592ef3d97f'
+    }, false),
+    //swipeable: Npm.require('react-swipeable')
 };

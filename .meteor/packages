@@ -16,3 +16,4 @@ react
 app-deps
 universe:modules
 http
+universe:react-chartjs

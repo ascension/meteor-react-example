@@ -4,6 +4,7 @@
 
 import { _, Router } from 'app-deps';
 import TopNav from 'client/components/navigation';
+import BottomNav from 'client/components/bottom-nav';
 
 var { RouteHandler } = Router;
 
@@ -26,10 +27,11 @@ export default React.createClass({
     render: function () {
         return (
             <div>
-                <TopNav />
-                <div className="container">
+                <div className="container" style={{paddingBottom: '60px'}}>
+                    <TopNav />
                     <RouteHandler />
                 </div>
+                <BottomNav/>
             </div>
         );
     }

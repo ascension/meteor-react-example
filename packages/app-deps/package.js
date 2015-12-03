@@ -22,7 +22,8 @@ Npm.depends({
     "externalify": "0.1.0",
     "lodash": "3.10.0",
     "bootbox": "4.4.0",
-    "nutritionix": "0.6.1"
+    "nutritionix": "0.6.1",
+    //"react-swipeable": "3.0.2"
 });
 
 // Note specific package versions embedded below as well.

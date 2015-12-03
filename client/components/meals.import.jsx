@@ -11,7 +11,7 @@ var { Input, Button, ButtonToolbar } = ReactBootstrap;
 // An example of an application-specific component.
 
 export default React.createClass({
-    displayName: 'Readings',
+    displayName: 'Meals',
     mixins: [ReactMeteorData],
     getInitialState: function() {
         return {
@@ -43,13 +43,9 @@ export default React.createClass({
 
         return (
             <div>
-                <h1 className="page-header">Readings</h1>
+                <h1 className="page-header">Meals</h1>
 
                 <div className="row">
-                    <div className="col-md-4 col-md-offset-4">
-                        <BGForm />
-                        <ReadingsList readings={this.data.readings} />
-                    </div>
                     <div className="col-md-4">
                         <NutritionSearch/>
                     </div>
