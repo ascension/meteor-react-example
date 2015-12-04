@@ -29,8 +29,8 @@ export default React.createClass({
             <div>
                 <div className="container" style={{paddingBottom: '60px'}}>
                     <TopNav />
-                    <RouteHandler />
                 </div>
+                <RouteHandler />
                 <BottomNav/>
             </div>
         );

@@ -22,6 +22,7 @@ button, a:focus {
 }
 
 
+
 body {
     padding-top: 50px;
 }
@@ -131,8 +132,108 @@ footer {
     z-index: 3;
 }
 
+/* Buttons */
 .circle-btn {
     color: #777;
     background-color: rgba(255, 255, 255, 1.0);
     border: none;
+}
+
+.tide-btn {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.tide-btn.danger {
+    background-color: #FF2D55;
+}
+
+.btn-success {
+    border-color: #4CD964;
+    background-color: #4CD964;
+}
+/* End of Buttons */
+
+.reading-row {
+    color: #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.reading-row:last-of-type {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.reading {
+    font-size: 32px;
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    display: inline-block;
+    padding: 20px;
+}
+
+.reading-time {
+    display: inline-block;
+    padding: 20px;
+}
+
+.reading-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.reading-details-row {
+    display: block;
+}
+
+.reading-details-row .left {
+    padding: 10px 20px;
+    display: inline-block;
+    width: 25%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.reading-details-row .right {
+    padding: 10px 20px;
+    display: inline-block;
+    width: 75%;
+    vertical-align: middle;
+}
+
+.tide-input {
+    text-align: center;
+}
+
+.tide-input input {
+    border: none;
+    box-shadow: none;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.tide-input.large input {
+    font-size: 48px;
+}
+
+.tide-input input {
+    text-align: center;
+}
+
+.tide-input .form-control {
+    height: 75px;
+    padding: 0;
+}
+
+.tide-input input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.tide-input input:-moz-placeholder { /* Firefox 18- */
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.tide-input input::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.tide-input input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }

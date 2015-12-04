@@ -28,7 +28,7 @@ export default React.createClass({
 
         return {
             loading: !subscriptionHandle.ready(),
-            readings: Readings.find().fetch(),
+            readings: Readings.find({}, {sort: {created_at: -1}}).fetch(),
             canWrite: user? Roles.userIsInRole(user, ['write', 'admin']) : false,
         };
     },
@@ -43,15 +43,12 @@ export default React.createClass({
 
         return (
             <div>
-                <h1 className="page-header">Readings</h1>
-
-                <div className="row">
+                <div className="row-fluid">
                     <div className="col-md-4 col-md-offset-4">
                         <BGForm />
-                        <ReadingsList readings={this.data.readings} />
                     </div>
-                    <div className="col-md-4">
-                        <NutritionSearch/>
+                    <div>
+                        <ReadingsList readings={this.data.readings} />
                     </div>
                 </div>
             </div>
@@ -190,28 +187,25 @@ var ReadingsList = React.createClass({
 
     render: function() {
         return (
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Reading</th>
-                        <th>Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {this.props.readings.map(t => {
-                    return (
-                        <ReadingRow reading={t} />
-                    );
-                })}
-                </tbody>
-                </table>
+            <div style={{marginTop: '50px'}}>
+            {this.props.readings.map(t => {
+                return (
+                    <ReadingRow reading={t} />
+                );
+            })}
+            </div>
         );
     }
 
 });
 
 var ReadingRow = React.createClass({
+
+    getInitialState: function() {
+        return {
+            open: false
+        }
+    },
 
     deleteReading: function() {
         Readings.remove(this.props.reading._id);
@@ -229,13 +223,47 @@ var ReadingRow = React.createClass({
         }
     },
 
+    readingDetails: function() {
+        if(this.state.open){
+            this.setState({open: false});
+        }
+        else {
+            this.setState({open: true});
+        }
+    },
+
+    getShowClass: function() {
+        if(this.state.open)
+            return 'show';
+        else
+            return 'hide';
+
+    },
+
     render: function() {
         return (
-            <tr key={this.props.reading._id} className={this.getReadingClass()}>
-                <td>{this.props.reading.reading}</td>
-                <td>{moment(this.props.reading.created_at).format("YYYY-MM-DD HH:mm")}</td>
-                <td><button className="btn btn-sm btn-danger" onClick={this.deleteReading}>Delete</button></td>
-            </tr>
+            // TODO - Add view todo details
+            <div className="reading-row" key={this.props.reading._id} >
+                <div className="reading-body" onClick={this.readingDetails}>
+                    <div className="reading">
+                        {this.props.reading.reading}
+                    </div>
+                    <div className={this.getReadingClass() + ' reading-time'}>
+                        {moment(this.props.reading.created_at).fromNow()}
+                    </div>
+                </div>
+                <div className={this.getShowClass() + ' reading-details'}>
+                    <div className="reading-details-row">
+                        <div className="left">Note:</div>
+                        <div className="right">{this.props.reading.note}</div>
+                    </div>
+                    <div className="reading-details-row">
+                        <button className="tide-btn danger" onClick={this.deleteReading}>
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
         );
     }
 });
@@ -248,7 +276,7 @@ var RecordNewButton = React.createClass({
 
     render: function() {
         return (
-            <Button bsStyle='success' onClick={this.props.onClick}>New Glucose Reading</Button>
+            <Button type='submit' bsStyle='success'>New Glucose Reading</Button>
         );
     }
 });
@@ -256,13 +284,15 @@ var RecordNewButton = React.createClass({
 var BGForm = React.createClass({
         getInitialState: function() {
             return {
-                value: ''
+                value: '',
+                note: ''
             };
         },
 
         setInitialState: function() {
           return {
-              value: ''
+              value: '',
+              note: ''
           };
         },
 
@@ -275,21 +305,32 @@ var BGForm = React.createClass({
 
         handleChange: function() {
             this.setState({
-                value: this.refs.input.getValue()
+                value: this.refs.input.getValue(),
+                note: this.refs.note.getValue()
             });
         },
 
         render: function() {
             return (
-                <form onSubmit={this.newReading}>
+                <form onSubmit={this.newReading} style={{textAlign: 'center'}}>
                     <Input
-                        type="text"
+                        type="number"
                         value={this.state.value}
-                        placeholder="Please enter a Blood Glucose Reading"
+                        placeholder="0"
                         hasFeedback
                         ref="input"
-                        groupClassName="group-class"
-                        labelClassName="laabel-class"
+                        groupClassName="group-class tide-input large"
+                        labelClassName="label-class"
+                        onChange={this.handleChange}
+                        />
+                    <Input
+                        type="text"
+                        value={this.state.note}
+                        placeholder="Note"
+                        hasFeedback
+                        ref="note"
+                        groupClassName="group-class tide-input"
+                        labelClassName="label-class"
                         onChange={this.handleChange}
                         />
                     <RecordNewButton onClick={this.newReading} />
@@ -301,14 +342,23 @@ var BGForm = React.createClass({
             e.preventDefault();
             var now = new Date();
 
-            Readings.insert({
-                created_at: now,
-                label: '',
-                reading: this.state.value,
-                user_id: Meteor.userId()
-            });
+            if(this.state.value == '') {
 
-            this.state.value = '';
+            }
+            else {
+                Readings.insert({
+                    created_at: now,
+                    label: '',
+                    note: this.state.note,
+                    reading: this.state.value,
+                    user_id: Meteor.userId()
+                });
+
+                this.state.value = '';
+                this.state.note = '';
+            }
+
+
         }
 });
 
