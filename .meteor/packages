@@ -17,3 +17,9 @@ app-deps
 universe:modules
 http
 universe:react-chartjs
+meteorhacks:npm
+
+
+npm-container
+service-configuration
+accounts-facebook

@@ -43,10 +43,14 @@ export default React.createClass({
 
         return (
             <div>
-                <div className="row-fluid">
-                    <div className="col-md-4 col-md-offset-4">
-                        <BGForm />
+                <div className="">
+                    <div className="" style={{}}>
+                        <div className="">
+                            <BGForm />
+                        </div>
                     </div>
+                </div>
+                <div className="" style={{marginBottom: "20px"}}>
                     <div>
                         <ReadingsList readings={this.data.readings} />
                     </div>
@@ -190,7 +194,7 @@ var ReadingsList = React.createClass({
             <div style={{marginTop: '50px'}}>
             {this.props.readings.map(t => {
                 return (
-                    <ReadingRow reading={t} />
+                    <ReadingRow reading={t} key={t._id}/>
                 );
             })}
             </div>
@@ -203,8 +207,14 @@ var ReadingRow = React.createClass({
 
     getInitialState: function() {
         return {
-            open: false
+            open: 'hide'
         }
+    },
+
+    componentWillUnmount: function() {
+      this.setState({
+          open: 'hide'
+      });
     },
 
     deleteReading: function() {
@@ -224,26 +234,19 @@ var ReadingRow = React.createClass({
     },
 
     readingDetails: function() {
-        if(this.state.open){
-            this.setState({open: false});
+
+        if(this.state.open == 'hide'){
+            this.setState({open: 'show'});
         }
         else {
-            this.setState({open: true});
+            this.setState({open: 'hide'});
         }
-    },
-
-    getShowClass: function() {
-        if(this.state.open)
-            return 'show';
-        else
-            return 'hide';
-
     },
 
     render: function() {
         return (
             // TODO - Add view todo details
-            <div className="reading-row" key={this.props.reading._id} >
+            <div className="reading-row">
                 <div className="reading-body" onClick={this.readingDetails}>
                     <div className="reading">
                         {this.props.reading.reading}
@@ -252,7 +255,7 @@ var ReadingRow = React.createClass({
                         {moment(this.props.reading.created_at).fromNow()}
                     </div>
                 </div>
-                <div className={this.getShowClass() + ' reading-details'}>
+                <div className={this.state.open + ' reading-details'}>
                     <div className="reading-details-row">
                         <div className="left">Note:</div>
                         <div className="right">{this.props.reading.note}</div>

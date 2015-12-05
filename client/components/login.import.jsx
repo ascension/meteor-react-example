@@ -43,8 +43,21 @@ export var Login = React.createClass({
                         <a href="#" onClick={this.forgotPassword}>Forgot password?</a>
                     </div>
                 </form>
+
+                <Button bsStyle="primary" block onClick={this.loginFacebook}>Log in</Button>
+
             </div>
         );
+    },
+
+    loginFacebook: function() {
+        Meteor.loginWithFacebook({requestPermissions: ['public_profile', 'email']}, err => {
+            if (err) {
+                this.setState({invalid: false, emailRequired: false, error: true, sent: false});
+            } else {
+                this.transitionTo("home");
+            }
+        });
     },
 
     forgotPassword: function(e) {

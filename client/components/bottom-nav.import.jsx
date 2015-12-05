@@ -67,7 +67,7 @@ export default React.createClass({
                         </Link>
                     </div>
                 </div>
-                <div className="container bottom-nav-bar">
+                <div className="bottom-nav-bar">
                     <button
                         style={{borderRadius: '75px', width: '75px', height: '75px', margin: '10px 0', fontSize: '24px'}}
                         className="circle-btn"

@@ -21,7 +21,12 @@ button, a:focus {
     box-shadow: none !important;
 }
 
-
+/* Hide Number Input Spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 body {
     padding-top: 50px;
@@ -96,7 +101,7 @@ body {
 }
 
 body {
-    background: rgba(26,214,253,1);
+    background: rgb(26, 214, 253);
     background: -moz-linear-gradient(-45deg, rgba(26,214,253,1) 0%, rgba(239,77,182,1) 100%);
     background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(26,214,253,1)), color-stop(100%, rgba(239,77,182,1)));
     background: -webkit-linear-gradient(-45deg, rgba(26,214,253,1) 0%, rgba(239,77,182,1) 100%);
@@ -108,6 +113,7 @@ body {
     position: relative;
     z-index: 1;
     padding-bottom: 75px;
+    background-attachment: fixed;
 }
 
 .navbar-tide {

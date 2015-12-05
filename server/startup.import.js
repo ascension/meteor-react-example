@@ -28,7 +28,7 @@ Meteor.startup(function () {
     // match client-side routes.
 
     Accounts.config({
-        forbidClientAccountCreation: true,
+        forbidClientAccountCreation: false,
     });
 
     Accounts.urls.resetPassword = function(token) {
@@ -54,7 +54,11 @@ Meteor.startup(function () {
         var userId = Accounts.createUser({
             'username': 'admin',
             'email': 'admin@example.org',
-            'password': 'secret'
+            'password': 'secret',
+            'first_name': '',
+            'last_name': '',
+            'max_bg_limit': '',
+            'min_bg_limit': ''
         });
 
         Roles.addUsersToRoles(userId, ['admin']);
