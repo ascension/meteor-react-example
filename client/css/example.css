@@ -30,6 +30,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 body {
     padding-top: 50px;
+    font-weight: 200;
 }
 
 /*
@@ -179,6 +180,10 @@ footer {
     padding: 20px;
 }
 
+.reading-input {
+    height: auto;
+}
+
 .reading-label {
     text-align: center;
     font-size: 12px;
@@ -233,7 +238,6 @@ footer {
 }
 
 .tide-input .form-control {
-    height: 75px;
     padding: 0;
 }
 
@@ -251,4 +255,14 @@ footer {
 
 .tide-input input:-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.4);
+}
+
+.tide-input label {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 200;
+}
+
+.profile .form-group {
+    margin: 0 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }

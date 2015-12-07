@@ -6,7 +6,7 @@ import  { _, moment, bootbox, ReactBootstrap } from 'app-deps';
 import Loading from 'client/components/loading';
 import { Readings } from 'lib/models';
 
-var { Input, Button, ButtonToolbar } = ReactBootstrap;
+var { Input, Button, ButtonToolbar, Image } = ReactBootstrap;
 
 export default React.createClass({
     displayName: "Profile",
@@ -47,45 +47,50 @@ export default React.createClass({
     render: function() {
         return (
         <div>
-            <h1 className="page-header">Profile</h1>
-
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-
+            <div className="row profile">
+                <div className="col-md-4 col-md-offset-4 form-horizontal tide-input">
                     <Input type="text"
                            value={this.state.first_name}
                            placeholder="First Name"
+                           label="First Name"
                            hasFeedback
                            ref="input"
+                           labelClassName="label-class col-xs-3"
+                           wrapperClassName="col-xs-9"
                            groupClassName="group-class"
-                           labelClassName="label-class"
                            onChange={this.updateFirstName}/>
 
                     <Input type="text"
                            value={this.state.last_name}
                            placeholder="Last Name"
+                           label="Last Name"
                            hasFeedback
                            ref="input"
                            groupClassName="group-class"
-                           labelClassName="label-class"
+                           labelClassName="label-class col-xs-3"
+                           wrapperClassName="col-xs-9"
                            onInput={this.updateLastName}/>
 
                     <Input type="text"
                            value={this.state.max_bg_limit}
                            placeholder="Blood Glucose Max Target"
+                           label="Last Name"
                            hasFeedback
                            ref="input"
                            groupClassName="group-class"
-                           labelClassName="label-class"
+                           labelClassName="label-class col-xs-3"
+                           wrapperClassName="col-xs-9"
                            onInput={this.updateMaxBgLimit}/>
 
                     <Input type="text"
                            value={this.state.min_bg_limit}
                            placeholder="Blood Glucose Min Target"
+                           label="Last Name"
                            hasFeedback
                            ref="input"
                            groupClassName="group-class"
-                           labelClassName="label-class"
+                           labelClassName="label-class col-xs-3"
+                           wrapperClassName="col-xs-9"
                            onInput={this.updateMinBgLimit}/>
                 </div>
             </div>

@@ -327,6 +327,7 @@ var BGForm = React.createClass({
                         groupClassName="group-class tide-input large"
                         labelClassName="label-class"
                         onChange={this.handleChange}
+                        className="reading-input"
                         />
                     <Input
                         type="text"
