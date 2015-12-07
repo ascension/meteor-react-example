@@ -28,7 +28,7 @@ export default React.createClass({
     render: function() {
 
         return (
-            <Navbar brand={<Link to="home">T1de</Link>}  fixedTop toggleNavKey={0} className="navbar-tide">
+            <Navbar brand={<Link to="home">T1de</Link>}  fixedTop toggleNavKey={0} className="navbar-tide" style={{paddingTop: '25px'}}>
                 <CollapsibleNav eventKey={0}>
                     <Nav navbar>
                         <NavItemLink to="readings">Readings</NavItemLink>

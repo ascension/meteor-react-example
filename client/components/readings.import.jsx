@@ -248,12 +248,8 @@ var ReadingRow = React.createClass({
             // TODO - Add view todo details
             <div className="reading-row">
                 <div className="reading-body" onClick={this.readingDetails}>
-                    <div className="reading">
-                        {this.props.reading.reading}
-                    </div>
-                    <div className={this.getReadingClass() + ' reading-time'}>
-                        {moment(this.props.reading.created_at).fromNow()}
-                    </div>
+                    <div className="reading">{this.props.reading.reading}</div>
+                    <div className={this.getReadingClass() + ' reading-time'}>{moment(this.props.reading.created_at).fromNow()}</div>
                 </div>
                 <div className={this.state.open + ' reading-details'}>
                     <div className="reading-details-row">
