@@ -120,6 +120,7 @@ body {
     background-color: #1AD6FD;
     border: none;
     color: #ffffff;
+    padding-top: 25px;
 }
 
 .bottom-nav-bar {
@@ -143,6 +144,8 @@ footer {
     color: #777;
     background-color: rgba(255, 255, 255, 1.0);
     border: none;
+    -webkit-box-shadow: 1px 1px 5px 1px rgba(255,255,255,0.4) !important;
+    box-shadow: 1px 1px 5px 1px rgba(255,255,255,0.4) !important;
 }
 
 .tide-btn {
@@ -174,6 +177,12 @@ footer {
     border-right: 1px solid rgba(255, 255, 255, 0.4);
     display: inline-block;
     padding: 20px;
+}
+
+.reading-label {
+    text-align: center;
+    font-size: 12px;
+    display: block;
 }
 
 .reading-time {

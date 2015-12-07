@@ -217,6 +217,9 @@ var ReadingRow = React.createClass({
       });
     },
 
+    editReading: function() {
+        Readings.remove(this.props.reading._id);
+    },
     deleteReading: function() {
         Readings.remove(this.props.reading._id);
     },
@@ -248,7 +251,7 @@ var ReadingRow = React.createClass({
             // TODO - Add view todo details
             <div className="reading-row">
                 <div className="reading-body" onClick={this.readingDetails}>
-                    <div className="reading">{this.props.reading.reading}</div>
+                    <div className="reading">{this.props.reading.reading}<span className="reading-label">mg/dl</span></div>
                     <div className={this.getReadingClass() + ' reading-time'}>{moment(this.props.reading.created_at).fromNow()}</div>
                 </div>
                 <div className={this.state.open + ' reading-details'}>
@@ -257,6 +260,9 @@ var ReadingRow = React.createClass({
                         <div className="right">{this.props.reading.note}</div>
                     </div>
                     <div className="reading-details-row">
+                        <button className="tide-btn danger" onClick={this.editReading}>
+                            Edit
+                        </button>
                         <button className="tide-btn danger" onClick={this.deleteReading}>
                             Delete
                         </button>

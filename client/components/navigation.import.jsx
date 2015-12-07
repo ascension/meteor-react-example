@@ -4,7 +4,7 @@
 
 import { _, ReactBootstrap, ReactRouterBootstrap, Router, moment } from 'app-deps';
 
-var { Navbar, CollapsibleNav, Nav, NavItem, DropdownButton, MenuItem } = ReactBootstrap;
+var { Navbar, CollapsibleNav, Nav, NavItem, DropdownButton, MenuItem, Glyphicon } = ReactBootstrap;
 var { Link } = Router;
 var { NavItemLink, MenuItemLink } = ReactRouterBootstrap;
 
@@ -28,12 +28,12 @@ export default React.createClass({
     render: function() {
 
         return (
-            <Navbar brand={<Link to="home">T1de</Link>}  fixedTop toggleNavKey={0} className="navbar-tide" style={{paddingTop: '25px'}}>
+            <Navbar brand={<Link to="home"><Glyphicon glyph="menu-hamburger" /></Link>}  fixedTop toggleNavKey={0} className="navbar-tide">
                 <CollapsibleNav eventKey={0}>
                     <Nav navbar>
                         <NavItemLink to="readings">Readings</NavItemLink>
                     </Nav>
-                    <Nav navbar right>
+                    <Nav navbar right style={{paddingTop: '25px'}}>
                         <DropdownButton ref="userMenu" title={this.data.user? this.data.user.username : "Not logged in"}>
                             {this.data.isAdmin? <MenuItemLink onClick={this.linkClick} to="adminUsers">Manage users</MenuItemLink> : ""}
                             <MenuItemLink onClick={this.linkClick} to="profile">Profile</MenuItemLink>
