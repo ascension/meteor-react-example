@@ -16,6 +16,7 @@ Npm.depends({
     "classnames": "2.1.2",
     "moment": "2.10.3",
     "react-bootstrap": "0.23.5",
+    "react": "0.13.3",
     "react-router": "0.13.3",
     "react-router-bootstrap": "0.16.0",
     "exposify": "0.4.3",
@@ -23,7 +24,9 @@ Npm.depends({
     "lodash": "3.10.0",
     "bootbox": "4.4.0",
     "nutritionix": "0.6.1",
-    //"react-swipeable": "3.0.2"
+    "react-swipeable": "3.0.2",
+    "react-swipe-to-reveal-options": "0.2.0"
+
 });
 
 // Note specific package versions embedded below as well.

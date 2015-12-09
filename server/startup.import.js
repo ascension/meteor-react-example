@@ -55,10 +55,10 @@ Meteor.startup(function () {
             'username': 'admin',
             'email': 'admin@example.org',
             'password': 'secret',
-            'first_name': '',
-            'last_name': '',
-            'max_bg_limit': '',
-            'min_bg_limit': ''
+            'first_name': 'Jerrod',
+            'last_name': 'Bunce',
+            'max_bg_limit': 80,
+            'min_bg_limit': 80
         });
 
         Roles.addUsersToRoles(userId, ['admin']);

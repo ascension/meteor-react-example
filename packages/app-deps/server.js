@@ -11,5 +11,7 @@ Dependencies = {
         appId: 'd777a3a8',
         appKey: 'c657dfac9946c562366e1d592ef3d97f'
     }, false),
-    //swipeable: Npm.require('react-swipeable')
+    Swipeable: Npm.require('react-swipeable'),
+    SwipeToRevealOptions: Npm.require('react-swipe-to-reveal-options')
+
 };

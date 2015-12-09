@@ -11,4 +11,5 @@ export const bootbox = Dependencies.bootbox;
 export const Router = Dependencies.Router;
 export const ReactBootstrap = Dependencies.ReactBootstrap;
 export const ReactRouterBootstrap = Dependencies.ReactRouterBootstrap;
-//export const ReactSwipeable = Dependencies.ReactSwipeable;
+export const Swipeable = Dependencies.Swipeable;
+export const SwipeToRevealOptions = Dependencies.SwipeToRevealOptions;

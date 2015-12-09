@@ -2,7 +2,7 @@
 /* global Meteor, React, ReactMeteorData, Roles */
 "use strict";
 
-import  { _, moment, bootbox, ReactBootstrap } from 'app-deps';
+import  { _, moment, bootbox, ReactBootstrap, Swipeable, SwipeToRevealOptions } from 'app-deps';
 import Loading from 'client/components/loading';
 import { Readings } from 'lib/models';
 
@@ -33,6 +33,8 @@ export default React.createClass({
         };
     },
 
+
+
     render: function() {
 
         // Show loading indicator if subscriptions are still downloading
@@ -44,7 +46,7 @@ export default React.createClass({
         return (
             <div>
                 <div className="">
-                    <div className="" style={{}}>
+                    <div className="" style={{marginTop: '75px'}}>
                         <div className="">
                             <BGForm />
                         </div>
@@ -59,6 +61,23 @@ export default React.createClass({
         );
     },
 
+});
+
+var SampleComponent = React.createClass({
+    displayName: "SampleComponent",
+    swipingUp: function() {
+        console.log('Swiped!');
+    },
+    render: function () {
+        return (
+            <Swipeable
+                onSwipedRight={()=>this.swipingUp()}>
+                <div style={{height: "250px"}}>
+                    This element can be swiped
+                </div>
+            </Swipeable>
+        )
+    }
 });
 
 var NutritionSearch = React.createClass({
@@ -246,34 +265,68 @@ var ReadingRow = React.createClass({
         }
     },
 
+    leftOptions: [{
+        label: 'Trash',
+        class: 'trash',
+        action: function() {
+            if(this.state.open == 'hide'){
+                this.setState({open: 'show'});
+            }
+            else {
+                this.setState({open: 'hide'});
+            }
+        }
+    }],
+    rightOptions: [{
+        label: 'Edit',
+        class: 'move',
+        action: function() {console.log('This is awesome')}
+
+    }],
+    callActionWhenSwipingFarLeft: true,
+    callActionWhenSwipingFarRight: true,
+
+    testMessage: function(option) {
+
+    },
+
     render: function() {
         return (
             // TODO - Add view todo details
-            <div className="reading-row">
-                <div className="reading-body" onClick={this.readingDetails}>
-                    <div className="reading">{this.props.reading.reading}<span className="reading-label">mg/dl</span></div>
-                    <div className={this.getReadingClass() + ' reading-time'}>{moment(this.props.reading.created_at).fromNow()}</div>
-                </div>
-                <div className={this.state.open + ' reading-details'}>
-                    <div className="reading-details-row">
-                        <div className="left">Note:</div>
-                        <div className="right">{this.props.reading.note}</div>
+            <SwipeToRevealOptions
+                leftOptions={this.leftOptions}
+                rightOptions={this.rightOptions}
+                callActionWhenSwipingFarRight={this.callActionWhenSwipingFarRight}
+                callActionWhenSwipingFarLeft={this.callActionWhenSwipingFarLeft}
+                onRightClick={(option)=>this.testMessage(option)}
+                onLeftClick={()=>this.deleteReading()}>
+                <div className="reading-row">
+                    <div className="reading-body" >
+                        <div className="reading">{this.props.reading.reading}<span className="reading-label">mg/dl</span></div>
+                        <div className={this.getReadingClass() + ' reading-time'}>{moment(this.props.reading.created_at).fromNow()}</div>
                     </div>
-                    <div className="reading-details-row">
-                        <button className="tide-btn danger" onClick={this.editReading}>
-                            Edit
-                        </button>
-                        <button className="tide-btn danger" onClick={this.deleteReading}>
-                            Delete
-                        </button>
+                    <div className={this.state.open + ' reading-details'}>
+                        <div className="reading-details-row">
+                            <div className="left">Note:</div>
+                            <div className="right">{this.props.reading.note}</div>
+                        </div>
+                        <div className="reading-details-row">
+                            <div>
+                            <button className="tide-btn btn-half" onClick={this.editReading}>
+                                Edit
+                            </button>
+                            <button className="tide-btn btn-half danger" onClick={this.deleteReading}>
+                                Delete
+                            </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </SwipeToRevealOptions>
+
         );
     }
 });
-
-
 
 var RecordNewButton = React.createClass({
     displayName: "RecordNewButton",

@@ -47,21 +47,21 @@ export default React.createClass({
         return (
             <footer>
                 <div className="container">
-                    <div className={this.state.menu}>
+                    <div className={this.state.menu} style={{position: "relative", overflow: 'hidden'}}>
                         <Link to="readings" onClick={() => this.handleClick()}>
                             <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
-                                    className="circle-btn"><Glyphicon glyph="tint" />
+                                    className="circle-btn toggleNav"><Glyphicon glyph="tint" />
                             </button>
                         </Link>
                         <Link to="profile">
                             <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
-                                    className="circle-btn"
+                                    className="circle-btn toggleNav2"
                                     onClick={() => this.handleClick()}><Glyphicon glyph="user" />
                             </button>
                         </Link>
                         <Link to="meals">
                             <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
-                                    className="circle-btn"
+                                    className="circle-btn toggleNav3"
                                     onClick={() => this.handleClick()}><Glyphicon glyph="apple" />
                             </button>
                         </Link>

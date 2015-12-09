@@ -29,8 +29,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 body {
-    padding-top: 50px;
     font-weight: 200;
+    overflow-x: hidden;
+}
+
+#main {
+    overflow-x: hidden;
 }
 
 /*
@@ -154,8 +158,22 @@ footer {
     padding: 10px 20px;
 }
 
+.tide-btn.btn-half {
+    width: 50%;
+    margin: 0 25px;
+    background-color: transparent;
+    border: 1px solid white;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
 .tide-btn.danger {
     background-color: #FF2D55;
+}
+
+.tide-btn.success {
+    background-color: #34AADC;
 }
 
 .btn-success {
@@ -265,4 +283,131 @@ footer {
 .profile .form-group {
     margin: 0 25px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.stro-container {
+    width: 300%;
+    margin-left: -100% ;
+    position: relative;
+}
+
+.stro-container.transition-back {
+    transition: all .4s ease;
+}
+
+.stro-left,
+.stro-content,
+.stro-right {
+    position: relative;
+    display: inline-block;
+    width: 33.33333333%;
+    height: auto;
+    vertical-align: middle;
+    height: 105px;
+}
+
+.stro-button {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.stro-button span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: block;
+}
+
+.stro-button.stro-right-button {
+    left: 0;
+}
+.stro-button.stro-right-button span {
+    left: 0;
+    text-align: center;
+}
+.stro-button.stro-left-button {
+    right: 0;
+}
+.stro-button.stro-left-button span {
+    right: 0;
+    text-align: center;
+}
+
+.stro-container.show-right-buttons,
+.stro-container.show-left-buttons,
+.stro-container.show-right-buttons .stro-button,
+.stro-container.show-left-buttons .stro-button{
+    transition: all .3s ease;
+}
+
+.move {
+    color: #FFF;
+    background: #1AD6FD;
+}
+.archive {
+    color: #FFF;
+    background: #e67e22;
+}
+.trash {
+    color: #FFF;
+    background: #FF3B30;
+}
+
+.toggleNav {
+    -webkit-animation: cssAnimation 0.25s ease-in;
+    -moz-animation: cssAnimation 0.25s ease-in;
+    -o-animation: cssAnimation 0.25s ease-in;
+}
+@-webkit-keyframes cssAnimation {
+    from {
+        -webkit-transform: translate3d(0,100%,0);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+.toggleNav2 {
+    -webkit-animation: cssAnimation2 0.3s ease-in;
+    -moz-animation: cssAnimation2 0.3s ease-in;
+    -o-animation: cssAnimation2 0.3s ease-in;
+}
+@-webkit-keyframes cssAnimation2 {
+    from {
+        -webkit-transform: translate3d(0,100%,0);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+.toggleNav3 {
+    -webkit-animation: cssAnimation3 0.35s ease-in;
+    -moz-animation: cssAnimation3 0.35s ease-in;
+    -o-animation: cssAnimation 0.35s ease-in;
+}
+@-webkit-keyframes cssAnimation3 {
+    from {
+        -webkit-transform: translate3d(0,100%,0);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes cssAnimation {
+    from {
+        -moz-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
+    to { -moz-transform: rotate(0deg) scale(1) skew(1deg) translate(12px); }
+}
+@-o-keyframes cssAnimation {
+    from { -o-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
+    to { -o-transform: rotate(0deg) scale(1) skew(1deg) translate(12px); }
 }

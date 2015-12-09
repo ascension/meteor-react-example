@@ -23,5 +23,6 @@ Dependencies = {
     Router: require('react-router'),
     ReactBootstrap: require('react-bootstrap'),
     ReactRouterBootstrap: require('react-router-bootstrap'),
-    //ReactSwipeable: require('react-swipeable'),
+    Swipeable: require('react-swipeable'),
+    SwipeToRevealOptions: require('react-swipe-to-reveal-options')
 };
