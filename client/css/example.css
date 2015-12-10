@@ -180,7 +180,34 @@ footer {
     border-color: #4CD964;
     background-color: #4CD964;
 }
+
+.login-buttons {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+ }
+
+.login {
+    background-color: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 25px 0;
+    width: 100%;
+    color: #FFF;
+    text-transform: uppercase;
+}
 /* End of Buttons */
+
+.login-page {
+    margin-top: 33vh;
+    text-align: center;
+
+}
+
+.login-page h1 {
+    color: #FFF;
+    font-weight: 200;
+}
 
 .reading-row {
     color: #ffffff;
@@ -355,59 +382,143 @@ footer {
 }
 
 .toggleNav {
-    -webkit-animation: cssAnimation 0.25s ease-in;
-    -moz-animation: cssAnimation 0.25s ease-in;
-    -o-animation: cssAnimation 0.25s ease-in;
+    -webkit-animation: cssAnimation 0.3s ease-out;
+    -moz-animation: cssAnimation 0.3s ease-out;
+    -o-animation: cssAnimation 0.3s ease-out;
 }
 @-webkit-keyframes cssAnimation {
-    from {
-        -webkit-transform: translate3d(0,100%,0);
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
         opacity: 0;
     }
-    to {
-        -webkit-transform: translate3d(0,0,0);
-        opacity: 1;
-    }
-}
-
-.toggleNav2 {
-    -webkit-animation: cssAnimation2 0.3s ease-in;
-    -moz-animation: cssAnimation2 0.3s ease-in;
-    -o-animation: cssAnimation2 0.3s ease-in;
-}
-@-webkit-keyframes cssAnimation2 {
-    from {
-        -webkit-transform: translate3d(0,100%,0);
+    80% {
         opacity: 0;
     }
-    to {
-        -webkit-transform: translate3d(0,0,0);
-        opacity: 1;
-    }
-}
-
-.toggleNav3 {
-    -webkit-animation: cssAnimation3 0.35s ease-in;
-    -moz-animation: cssAnimation3 0.35s ease-in;
-    -o-animation: cssAnimation 0.35s ease-in;
-}
-@-webkit-keyframes cssAnimation3 {
-    from {
-        -webkit-transform: translate3d(0,100%,0);
-        opacity: 0;
-    }
-    to {
+    100% {
         -webkit-transform: translate3d(0,0,0);
         opacity: 1;
     }
 }
 
 @-moz-keyframes cssAnimation {
-    from {
-        -moz-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
-    to { -moz-transform: rotate(0deg) scale(1) skew(1deg) translate(12px); }
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
 }
-@-o-keyframes cssAnimation {
-    from { -o-transform: rotate(4deg) scale(1) skew(1deg) translate(10px); }
-    to { -o-transform: rotate(0deg) scale(1) skew(1deg) translate(12px); }
+
+@-o-keyframes  cssAnimation{
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+.toggleNav2 {
+    -webkit-animation: cssAnimation2 0.20s ease-out;
+    -moz-animation: cssAnimation2 0.20s ease-out;
+    -o-animation: cssAnimation2 0.2s ease-out;
+}
+@-webkit-keyframes cssAnimation2 {
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes cssAnimation2 {
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes  cssAnimation2{
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+.toggleNav3 {
+    -webkit-animation: cssAnimation3 0.1s ease-out;
+    -moz-animation: cssAnimation3 0.1s ease-out;
+    -o-animation: cssAnimation3 0.1s ease-out;
+}
+
+@-webkit-keyframes cssAnimation3 {
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes cssAnimation3 {
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@-o-keyframes  cssAnimation3 {
+    0% {
+        -webkit-transform: translate3d(0,250px,0);
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        opacity: 1;
+    }
 }
