@@ -32,9 +32,6 @@ export default React.createClass({
             canWrite: user? Roles.userIsInRole(user, ['write', 'admin']) : false,
         };
     },
-
-
-
     render: function() {
 
         // Show loading indicator if subscriptions are still downloading
@@ -44,18 +41,12 @@ export default React.createClass({
         }
 
         return (
-            <div>
-                <div className="">
-                    <div className="" style={{marginTop: '75px'}}>
-                        <div className="">
-                            <BGForm />
-                        </div>
-                    </div>
+            <div style={{marginTop: '75px'}}>
+                <div>
+                    <BGForm />
                 </div>
-                <div className="" style={{marginBottom: "20px"}}>
-                    <div>
-                        <ReadingsList readings={this.data.readings} />
-                    </div>
+                <div className="reading-rows" style={{marginBottom: "20px"}}>
+                    <ReadingsList readings={this.data.readings} />
                 </div>
             </div>
         );
@@ -391,6 +382,7 @@ var BGForm = React.createClass({
                         groupClassName="group-class tide-input"
                         labelClassName="label-class"
                         onChange={this.handleChange}
+                        className="reading-input"
                         />
                     <RecordNewButton onClick={this.newReading} />
                 </form>

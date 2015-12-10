@@ -6,7 +6,7 @@ import  { _, moment, bootbox, ReactBootstrap } from 'app-deps';
 import Loading from 'client/components/loading';
 import { Readings } from 'lib/models';
 
-var { Input, Button, ButtonToolbar, Image } = ReactBootstrap;
+var { Input, Button, ButtonToolbar, Image, Row, Glyphicon } = ReactBootstrap;
 
 export default React.createClass({
     displayName: "Profile",
@@ -46,56 +46,80 @@ export default React.createClass({
 
     render: function() {
         return (
-        <div>
-            <div className="row profile">
-                <div className="col-md-4 col-md-offset-4 form-horizontal tide-input">
-                    <Input type="text"
-                           value={this.state.first_name}
-                           placeholder="First Name"
-                           label="First Name"
-                           hasFeedback
-                           ref="input"
-                           labelClassName="label-class col-xs-3"
-                           wrapperClassName="col-xs-9"
-                           groupClassName="group-class"
-                           onChange={this.updateFirstName}/>
+        <div className='profile-page' style={{marginTop: '75px'}}>
+            <ProfileBlock />
+            <div className="tide-row tide-expand">
+                General
+                <Glyphicon glyph="chevron-down" style={{float: 'right'}}/>
+            </div>
+            <div className="profile">
+                <div className="form-horizontal tide-input">
+                    <div className="form-group">
+                        <div className="col-xs-5">
+                            <label>First Name</label>
+                        </div>
+                        <div className="col-xs-7">
+                            <input
+                                value={this.state.first_name}
+                                type="text"
+                                placeholder="First Name"
+                                onChange={this.updateFirstName}/>
+                        </div>
+                    </div>
 
-                    <Input type="text"
-                           value={this.state.last_name}
-                           placeholder="Last Name"
-                           label="Last Name"
-                           hasFeedback
-                           ref="input"
-                           groupClassName="group-class"
-                           labelClassName="label-class col-xs-3"
-                           wrapperClassName="col-xs-9"
-                           onInput={this.updateLastName}/>
+                    <div className="form-group">
+                        <div className="col-xs-5">
+                            <label>Last Name</label>
+                        </div>
+                        <div className="col-xs-7">
+                            <input
+                                value={this.state.last_name}
+                                type="text"
+                                placeholder="Last Name"
+                                onChange={this.updateLastName}/>
+                        </div>
+                    </div>
 
-                    <Input type="text"
-                           value={this.state.max_bg_limit}
-                           placeholder="Blood Glucose Max Target"
-                           label="Last Name"
-                           hasFeedback
-                           ref="input"
-                           groupClassName="group-class"
-                           labelClassName="label-class col-xs-3"
-                           wrapperClassName="col-xs-9"
-                           onInput={this.updateMaxBgLimit}/>
+                    <div className="form-group">
+                        <div className="col-xs-5">
+                            <label>Max Target Range</label>
+                        </div>
+                        <div className="col-xs-7">
+                            <input
+                                value={this.state.max_bg_limit}
+                                type="text"
+                                placeholder="Blood Glucose Max Target"
+                                onChange={this.updateMaxBgLimit}/>
+                        </div>
+                    </div>
 
-                    <Input type="text"
-                           value={this.state.min_bg_limit}
-                           placeholder="Blood Glucose Min Target"
-                           label="Last Name"
-                           hasFeedback
-                           ref="input"
-                           groupClassName="group-class"
-                           labelClassName="label-class col-xs-3"
-                           wrapperClassName="col-xs-9"
-                           onInput={this.updateMinBgLimit}/>
+                    <div className="form-group">
+                        <div className="col-xs-5">
+                            <label>Min Target Range</label>
+                        </div>
+                        <div className="col-xs-7">
+                            <input
+                                value={this.state.min_bg_limit}
+                                type="text"
+                                placeholder="Blood Glucose Min Target"
+                                onChange={this.updateMinBgLimit}/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        );
+    }
+});
+
+export var ProfileBlock = React.createClass({
+    displayName: "Profile",
+
+    render: function(){
+        return (
+            <div className="profile-block">
+            </div>
         );
     }
 });

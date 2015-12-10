@@ -16,16 +16,7 @@ export default React.createClass({
     render: function() {
         return (
             <div className="please-wait modal-open">
-                <Modal
-                    title='Please wait...'
-                    backdrop={false}
-                    animation={false}
-                    closeButton={false}
-                    onRequestHide={() => {}}>
-                    <div className='modal-body'>
-                        <ProgressBar active now={100} />
-                    </div>
-                </Modal>
+
             </div>
         );
     }

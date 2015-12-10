@@ -27,7 +27,7 @@ export default React.createClass({
     render: function () {
         return (
             <div>
-                <div className="container" style={{paddingBottom: '60px'}}>
+                <div className="container">
                     <TopNav />
                 </div>
                 <RouteHandler />

@@ -31,6 +31,7 @@ input[type=number]::-webkit-outer-spin-button {
 body {
     font-weight: 200;
     overflow-x: hidden;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 
 #main {
@@ -214,7 +215,7 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.reading-row:last-of-type {
+.reading-rows > .reading-row:last-of-type {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
@@ -227,6 +228,7 @@ footer {
 
 .reading-input {
     height: auto;
+    text-align: center;
 }
 
 .reading-label {
@@ -263,23 +265,17 @@ footer {
     vertical-align: middle;
 }
 
-.tide-input {
-    text-align: center;
-}
-
 .tide-input input {
     border: none;
     box-shadow: none;
     color: #ffffff;
     background-color: transparent;
+    height: auto;
+    font-size: 16px;
 }
 
 .tide-input.large input {
     font-size: 48px;
-}
-
-.tide-input input {
-    text-align: center;
 }
 
 .tide-input .form-control {
@@ -305,12 +301,48 @@ footer {
 .tide-input label {
     color: rgba(255, 255, 255, 0.4);
     font-weight: 200;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* Profile Page */
+.profile-page {
+    color: #ffffff;
+}
+
+.tide-row {
+    padding: 0 30px;
+}
+
+.tide-expand {
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.profile-block {
+    height: 33vh;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    background-image:url(http://placehold.it/350x150);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .profile .form-group {
-    margin: 0 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    margin: 0 30px 15px 30px;
+    padding: 20px 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
 }
+
+.form-group div[class*="col-"] {
+    padding: 0;
+}
+
+/* End Profile Page */
+
 
 .stro-container {
     width: 300%;
