@@ -4,10 +4,36 @@
 
 import { _, Router, ReactBootstrap } from 'app-deps';
 
-var { Alert, Input, Button } = ReactBootstrap;
+var { Alert, Input, Button, Grid, Row, Col } = ReactBootstrap;
 var { Link } = Router;
 
 // React components for login flows
+
+export var LandingPage = React.createClass({
+    displayName: 'LandingPage',
+    mixins: [React.addons.LinkedStateMixin, Router.Navigation],
+
+    render: function() {
+        return (
+
+            <Grid className='login-page'>
+                <Row>
+                    <h1>Welcome</h1>
+                    <h1>to</h1>
+                    <h1>T1de</h1>
+                </Row>
+                <Row className="login-buttons">
+                    <Link to="login">
+                        <button className="login">Sign In</button>
+                    </Link>
+                    <Link to="login">
+                        <button className="login">New Account</button>
+                    </Link>
+                </Row>
+            </Grid>
+        );
+    },
+});
 
 export var Login = React.createClass({
     displayName: 'Login',
@@ -23,30 +49,43 @@ export var Login = React.createClass({
             sent: false
         };
     },
-
+    handleClick: function() {
+        console.log('Blah');
+    },
     render: function() {
         return (
-            <div className="container">
-                <form className="form-signin" onSubmit={this.onSubmit}>
-                    <h2 className="form-signin-heading">Log in</h2>
 
-                    {this.state.sent? <Alert bsStyle="info">Please check your email</Alert> : ""}
-                    {this.state.invalid? <Alert bsStyle="danger">Please enter email and password</Alert> : ""}
-                    {this.state.emailRequired? <Alert bsStyle="danger">Please enter your email address first.</Alert> : ""}
-                    {this.state.error? <Alert bsStyle="danger">Login unsuccessful. Please try again.</Alert> : ""}
+            <Grid>
+                <Row>
+                    <Col xs={8} xsOffset={2}>
+                        <form className="form-signin" onSubmit={this.onSubmit}>
+                            <h2 className="form-signin-heading">Log in</h2>
 
-                    <Input type="text" labelClassName="sr-only" label="Username" required autofocus placeholder="Username" valueLink={this.linkState('email')} />
-                    <Input type="password" labelClassName="sr-only" label="Password" required placeholder="Password" valueLink={this.linkState('password')} />
+                            {this.state.sent? <Alert bsStyle="info">Please check your email</Alert> : ""}
+                            {this.state.invalid? <Alert bsStyle="danger">Please enter email and password</Alert> : ""}
+                            {this.state.emailRequired? <Alert bsStyle="danger">Please enter your email address first.</Alert> : ""}
+                            {this.state.error? <Alert bsStyle="danger">Login unsuccessful. Please try again.</Alert> : ""}
 
-                    <Button bsStyle="primary" block type="submit">Log in</Button>
-                    <div className="form-group">
-                        <a href="#" onClick={this.forgotPassword}>Forgot password?</a>
-                    </div>
-                </form>
+                            <Input type="text" labelClassName="sr-only" label="Username" required autofocus placeholder="Username" valueLink={this.linkState('email')} />
+                            <Input type="password" labelClassName="sr-only" label="Password" required placeholder="Password" valueLink={this.linkState('password')} />
 
-                <Button bsStyle="primary" block onClick={this.loginFacebook}>Log in</Button>
+                            <Button bsStyle="primary" block type="submit">Log in</Button>
+                            <div className="form-group">
+                                <a href="#" onClick={this.forgotPassword}>Forgot password?</a>
+                            </div>
+                        </form>
 
-            </div>
+                    </Col>
+                </Row>
+                <Row className="login-buttons">
+                    <Link to="readings">
+                        <button className="login">Log In</button>
+                    </Link>
+                    <Link to="readings">
+                        <button className="login">Forgot Password</button>
+                    </Link>
+                </Row>
+            </Grid>
         );
     },
 

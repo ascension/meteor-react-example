@@ -4,7 +4,7 @@
 
 import { _, Router } from 'app-deps';
 
-import { Login, ResetPassword, EnrollAccount, ChangePassword} from 'client/components/login';
+import { LandingPage, Login, ResetPassword, EnrollAccount, ChangePassword} from 'client/components/login';
 import { AdminUsers, CreateUser } from 'client/components/users';
 
 import App from 'client/components/app';
@@ -24,6 +24,7 @@ Meteor.startup(() => {
 
     var routes = [
         // Account management
+        <Route name="landing" path="/landing" handler={LandingPage}/>,
         <Route name="login" path="/login" handler={Login}/>,
         <Route name="resetPassword" path="/reset-password/:token" handler={ResetPassword}/>,
         <Route name="enrollAccount" path="/enroll-account/:token" handler={EnrollAccount}/>,

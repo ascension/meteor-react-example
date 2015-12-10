@@ -19,7 +19,7 @@ export default React.createClass({
             // Redirect to /login if we land here without a valid user
             var user = Meteor.user();
             if(user === null) {
-                transition.redirect('/login');
+                transition.redirect('/landing');
             }
         }
     },
