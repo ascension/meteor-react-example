@@ -21,3 +21,6 @@ service-configuration
 accounts-facebook
 raix:push
 meteorhacks:kadira
+peerlibrary:assert
+hipstersmoothie:scrollmagic
+utilities:avatar
