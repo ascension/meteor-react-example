@@ -48,30 +48,24 @@ export default React.createClass({
             <footer>
                 <div className="container">
                     <div className={this.state.menu} style={{position: "relative", overflow: 'hidden'}}>
-                        <Link to="readings" onClick={() => this.handleClick()}>
-                            <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
-                                    className="circle-btn toggleNav"><Glyphicon glyph="tint" />
-                            </button>
-                        </Link>
-                        <Link to="profile">
-                            <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
-                                    className="circle-btn toggleNav2"
-                                    onClick={() => this.handleClick()}><Glyphicon glyph="user" />
-                            </button>
-                        </Link>
-                        <Link to="meals">
-                            <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
-                                    className="circle-btn toggleNav3"
-                                    onClick={() => this.handleClick()}><Glyphicon glyph="apple" />
-                            </button>
-                        </Link>
+                        <button onClick={() => this.handleClick('readings')} style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
+                                className="circle-btn toggleNav"><Glyphicon glyph="tint" />
+                        </button>
+                        <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
+                                className="circle-btn toggleNav2"
+                                onClick={() => this.handleClick('profile')}><Glyphicon glyph="user" />
+                        </button>
+                        <button style={{borderRadius: '75px', width: '75px', height: '75px', display: 'block', margin: '10px auto', fontSize: '24px'}}
+                                className="circle-btn toggleNav3"
+                                onClick={() => this.handleClick('meals')}><Glyphicon glyph="apple" />
+                        </button>
                     </div>
                 </div>
                 <div className="bottom-nav-bar">
                     <button
                         style={{borderRadius: '75px', width: '75px', height: '75px', margin: '10px 0', fontSize: '24px'}}
                         className="circle-btn"
-                        onClick={() => this.handleClick()}><Glyphicon glyph="menu-hamburger" /></button>
+                        onClick={() => this.toggleMenuState()}><Glyphicon glyph="menu-hamburger" /></button>
                 </div>
 
             </footer>

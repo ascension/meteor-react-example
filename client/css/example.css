@@ -36,6 +36,7 @@ body {
 
 #main {
     overflow-x: hidden;
+    padding-top: 75px;
 }
 
 /*
@@ -310,10 +311,15 @@ footer {
 /* Profile Page */
 .profile-page {
     color: #ffffff;
+    padding-bottom: 275px;
 }
 
 .tide-row {
     padding: 0 30px;
+}
+
+.snap.profile-info{
+    top: 75px !important;
 }
 
 .tide-expand {
@@ -332,9 +338,13 @@ footer {
 }
 
 .profile .form-group {
-    margin: 0 30px 15px 30px;
+    margin: 0 30px 0 30px;
     padding: 20px 0;
     border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.profile .form-group:last-of-type {
+    border-bottom: none;
 }
 
 .form-group div[class*="col-"] {
