@@ -1,6 +1,27 @@
 /* global Meteor, Match, check, Roles, Accounts */
 "use strict";
 
+if(Meteor.isServer) {
+    Accounts.onCreateUser((options, user) => {
+
+        var first_name, last_name;
+
+        if('facebook' in user.services){
+            first_name = user.services.facebook.first_name;
+            last_name = user.services.facebook.last_name;
+        }
+
+        if (options.profile) {
+            user.profile = options.profile;
+            user.profile.first_name = first_name;
+            user.profile.last_name = last_name;
+            user.profile.avatar = Avatar.getUrl(Meteor.user());
+        }
+
+        return user;
+    });
+}
+
 Meteor.methods({
 
     /**
@@ -54,7 +75,5 @@ Meteor.methods({
                 "id": item_id
             }
         });
-    },
-
-
+    }
 });
